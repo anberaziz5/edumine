@@ -81,5 +81,5 @@ with gr.Blocks(title="EduMine — At-Risk Student Predictor") as demo:
     )
 
 # ─── Launch (keeps the Space alive — DO NOT remove) ──────────────────────────
-# Gradio 4.x has no SSR / Node.js — no extra flags needed
-demo.launch(server_name="0.0.0.0", server_port=7860)
+# ssr_mode=False disables the Node.js SSR proxy (valid in Gradio 6.x)
+demo.launch(server_name="0.0.0.0", server_port=7860, ssr_mode=False)
