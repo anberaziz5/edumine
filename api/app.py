@@ -1,7 +1,3 @@
-# api/app.py
-# Runs on HuggingFace Gradio Space (free tier)
-# Exposes /predict REST endpoint AND a Gradio UI for demo
-
 import json
 import numpy as np
 import joblib
