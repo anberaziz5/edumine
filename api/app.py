@@ -118,9 +118,6 @@ with gr.Blocks(title="EduMine — At-Risk Student Predictor") as demo:
               outputs=result)
 
 # ─── Mount FastAPI on the Gradio app ─────────────────────────────────────────
+# HuggingFace Gradio Spaces auto-detect the `app` variable and serve it on
+# port 7860 via their own uvicorn instance — do NOT call uvicorn.run() here.
 app = gr.mount_gradio_app(rest, demo, path="/")
-
-# ─── Start the server (keeps HuggingFace Space alive) ────────────────────────
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=7860)
