@@ -37,7 +37,7 @@ function RiskGauge({ pct, label }) {
             strokeLinecap='round'
           />
         </svg>
-        <div className='absolute flex flex-col items-center justify-center'>
+        <div className='absolute inset-0 flex flex-col items-center justify-center pointer-events-none'>
             <span className={`text-5xl font-black ${colors.text} tracking-tighter drop-shadow-md`}>{pct}<span className='text-2xl text-slate-500'>%</span></span>
         </div>
       </div>
@@ -138,7 +138,7 @@ export default function App() {
         <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-cyan-900/10 blur-[150px]" />
       </div>
 
-      <header className='relative z-10 border-b border-white/5 bg-[#0B1120]/80 backdrop-blur-xl sticky top-0'>
+      <header className='relative z-50 border-b border-white/5 bg-[#0B1120]/80 backdrop-blur-xl sticky top-0'>
         <div className='max-w-7xl mx-auto px-6 py-5 flex items-center gap-4'>
           <div className='w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20'>
             <span className='text-white font-bold text-xl'>E</span>
