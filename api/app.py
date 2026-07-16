@@ -12,12 +12,14 @@ from pydantic import BaseModel
 from huggingface_hub import hf_hub_download
 
 # ─── Load model from HuggingFace Hub ──────────────────────────────────────────
-REPO = 'NareenAsad/edumine-xgboost'
+import os
+REPO  = 'nareen99/edumine-xgboost'
+TOKEN = os.environ.get('HF_TOKEN')       # set this as a Space secret
 
 try:
-    model    = joblib.load(hf_hub_download(REPO, 'week3_model.pkl'))
-    explainer= joblib.load(hf_hub_download(REPO, 'week3_explainer.pkl'))
-    with open(hf_hub_download(REPO, 'week3_features.json')) as f:
+    model    = joblib.load(hf_hub_download(REPO, 'week3_model.pkl',    token=TOKEN))
+    explainer= joblib.load(hf_hub_download(REPO, 'week3_explainer.pkl',token=TOKEN))
+    with open(hf_hub_download(REPO, 'week3_features.json',             token=TOKEN)) as f:
         FEATURES = json.load(f)
     print(f"✅ Model loaded from {REPO}")
 except Exception as e:
