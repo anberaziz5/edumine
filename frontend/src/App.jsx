@@ -125,8 +125,10 @@ export default function App() {
         body: JSON.stringify(form)
       })
       if (!res.ok) throw new Error('Network response was not ok')
-      setResult(await res.json())
-    } catch(e) { setError('API unavailable — check that the backend is running.') }
+      const data = await res.json()
+      if (data.error) throw new Error(data.error)
+      setResult(data)
+    } catch(e) { setError(e.message || 'API unavailable — check that the backend is running.') }
     setLoading(false)
   }
 

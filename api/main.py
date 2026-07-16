@@ -8,11 +8,13 @@ app = FastAPI(title='EduMine API', version='1.0')
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_methods=['*'], allow_headers=['*'])
 
 # Download artifacts from HuggingFace on startup
-REPO = 'NareenAsad/edumine-xgboost'
+import os
+REPO = 'nareen99/edumine-xgboost'
+TOKEN = os.environ.get('HF_TOKEN')
 try:
-    model    = joblib.load(hf_hub_download(REPO, 'week3_model.pkl'))
-    explainer= joblib.load(hf_hub_download(REPO, 'week3_explainer.pkl'))
-    with open(hf_hub_download(REPO, 'week3_features.json')) as f:
+    model    = joblib.load(hf_hub_download(REPO, 'week3_model.pkl', token=TOKEN))
+    explainer= joblib.load(hf_hub_download(REPO, 'week3_explainer.pkl', token=TOKEN))
+    with open(hf_hub_download(REPO, 'week3_features.json', token=TOKEN)) as f:
         FEATURES = json.load(f)
 except Exception as e:
     print(f"Warning: Could not load models on startup. Make sure you have uploaded them to {REPO}")
