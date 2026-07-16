@@ -67,21 +67,14 @@ export default function App() {
   const analyze = async () => {
     setLoading(true); setError(null)
     try {
-      // Gradio Spaces API: POST /run/{api_name} with {data: [...args in order]}
-      const res = await fetch(`${API}/run/predict`, {
+      const res = await fetch(`${API}/predict`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ data: [
-          form.total_clicks, form.active_days, form.mean_daily_clicks,
-          form.activity_diversity, form.weeks_active, form.avg_score,
-          form.num_submissions, form.early_clicks, form.edu_level,
-          form.studied_credits, form.num_of_prev_attempts
-        ]})
+        body: JSON.stringify(form)
       })
       if (!res.ok) throw new Error('Network response was not ok')
-      const json = await res.json()
-      setResult(json.data[0])   // Gradio wraps return value in data[0]
-    } catch(e) { setError('API unavailable.') }
+      setResult(await res.json())
+    } catch(e) { setError('API unavailable — check that the backend is running.') }
     setLoading(false)
   }
 
