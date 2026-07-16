@@ -110,7 +110,118 @@ const INPUT_GROUPS = [
   }
 ]
 
+function LandingPage({ onStart }) {
+  return (
+    <div className='min-h-screen bg-[#0B1120] text-slate-200 selection:bg-cyan-500/30 font-sans scroll-smooth'>
+      {/* Background Effects */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-900/20 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-cyan-900/10 blur-[150px]" />
+      </div>
+      
+      {/* Navbar */}
+      <header className='relative z-50 border-b border-white/5 bg-[#0B1120]/80 backdrop-blur-xl'>
+        <div className='max-w-7xl mx-auto px-6 py-5 flex items-center justify-between'>
+          <div className='flex items-center gap-4'>
+            <div className='w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20'>
+              <span className='text-white font-bold text-xl'>E</span>
+            </div>
+            <div>
+              <h1 className='text-xl font-black tracking-tight text-white'>EduMine</h1>
+            </div>
+          </div>
+          <button onClick={onStart} className='px-6 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-full transition-colors backdrop-blur-md border border-white/10'>
+            Launch Analyzer
+          </button>
+        </div>
+      </header>
+
+      <main className='relative z-10'>
+        {/* Hero Section */}
+        <section className='max-w-7xl mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center'>
+          <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-sm font-medium mb-8'>
+            <span className='relative flex h-2 w-2'>
+              <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75'></span>
+              <span className='relative inline-flex rounded-full h-2 w-2 bg-cyan-500'></span>
+            </span>
+            Machine Learning Powered
+          </div>
+          <h1 className='text-5xl md:text-7xl font-black text-white tracking-tight leading-tight mb-8 max-w-4xl'>
+            Predict Student Success with <span className='text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500'>Precision.</span>
+          </h1>
+          <p className='text-lg md:text-xl text-slate-400 max-w-2xl mb-12 leading-relaxed'>
+            EduMine analyzes early engagement metrics to identify at-risk students before they fall behind. Empower educators with data-driven insights.
+          </p>
+          <div className='flex flex-col sm:flex-row gap-4'>
+            <button onClick={onStart} className='px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 rounded-2xl font-bold text-white tracking-wide shadow-lg shadow-cyan-500/25 transition-all duration-300 transform hover:-translate-y-0.5'>
+              Try the Analyzer
+            </button>
+            <a href="#how-it-works" className='px-8 py-4 bg-white/5 hover:bg-white/10 rounded-2xl font-bold text-white tracking-wide border border-white/10 transition-all duration-300'>
+              Learn More
+            </a>
+          </div>
+        </section>
+
+        {/* Context / Explanation Section */}
+        <section id="how-it-works" className='border-t border-white/5 bg-slate-900/20'>
+          <div className='max-w-7xl mx-auto px-6 py-24'>
+            <div className='text-center mb-16'>
+              <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>Why EduMine?</h2>
+              <p className='text-slate-400 max-w-2xl mx-auto leading-relaxed'>
+                Student retention is a critical challenge in modern education. By leveraging machine learning on demographic and learning management system (LMS) data, we can predict outcomes early and intervene effectively.
+              </p>
+            </div>
+            
+            <div className='grid md:grid-cols-3 gap-8'>
+              {/* Feature 1 */}
+              <div className='bg-slate-900/50 backdrop-blur-md border border-white/5 rounded-3xl p-8 shadow-xl transition-transform hover:-translate-y-1'>
+                <div className='w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 text-2xl border border-blue-500/20 text-blue-400'>
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>
+                </div>
+                <h3 className='text-xl font-bold text-white mb-3'>Data-Driven Insights</h3>
+                <p className='text-slate-400 text-sm leading-relaxed'>
+                  Trained on over 32,000 records from the Open University Learning Analytics Dataset (OULAD), our model recognizes complex patterns in student behavior.
+                </p>
+              </div>
+
+              {/* Feature 2 */}
+              <div className='bg-slate-900/50 backdrop-blur-md border border-white/5 rounded-3xl p-8 shadow-xl transition-transform hover:-translate-y-1'>
+                <div className='w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-6 text-2xl border border-cyan-500/20 text-cyan-400'>
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                </div>
+                <h3 className='text-xl font-bold text-white mb-3'>Early Intervention</h3>
+                <p className='text-slate-400 text-sm leading-relaxed'>
+                  By analyzing engagement from just the first few weeks of a course, EduMine provides early warnings, giving educators time to offer meaningful support.
+                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className='bg-slate-900/50 backdrop-blur-md border border-white/5 rounded-3xl p-8 shadow-xl transition-transform hover:-translate-y-1'>
+                <div className='w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6 text-2xl border border-purple-500/20 text-purple-400'>
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" /></svg>
+                </div>
+                <h3 className='text-xl font-bold text-white mb-3'>Explainable AI</h3>
+                <p className='text-slate-400 text-sm leading-relaxed'>
+                  We don't just give a risk score. Using SHAP (SHapley Additive exPlanations), we show you exactly which factors are increasing or reducing a student's risk.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className='border-t border-white/5 bg-[#0B1120] py-12 relative z-10'>
+          <div className='max-w-7xl mx-auto px-6 text-center text-slate-500 text-sm'>
+            <p>EduMine Early Warning System. Empowering educators with predictive analytics.</p>
+          </div>
+        </footer>
+      </main>
+    </div>
+  )
+}
+
 export default function App() {
+  const [showLanding, setShowLanding] = useState(true)
   const [form, setForm] = useState(DEFAULTS)
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -132,6 +243,10 @@ export default function App() {
     setLoading(false)
   }
 
+  if (showLanding) {
+    return <LandingPage onStart={() => setShowLanding(false)} />
+  }
+
   return (
     <div className='min-h-screen bg-[#0B1120] text-slate-200 selection:bg-cyan-500/30'>
       {/* Background Effects */}
@@ -141,14 +256,20 @@ export default function App() {
       </div>
 
       <header className='relative z-50 border-b border-white/5 bg-[#0B1120]/80 backdrop-blur-xl sticky top-0'>
-        <div className='max-w-7xl mx-auto px-6 py-5 flex items-center gap-4'>
-          <div className='w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20'>
-            <span className='text-white font-bold text-xl'>E</span>
+        <div className='max-w-7xl mx-auto px-6 py-4 flex items-center justify-between'>
+          <div className='flex items-center gap-4 cursor-pointer hover:opacity-80 transition-opacity' onClick={() => setShowLanding(true)}>
+            <div className='w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20'>
+              <span className='text-white font-bold text-xl'>E</span>
+            </div>
+            <div>
+              <h1 className='text-2xl font-black tracking-tight text-white'>EduMine</h1>
+              <p className='text-xs font-medium text-cyan-400/80 uppercase tracking-widest'>Early Warning System</p>
+            </div>
           </div>
-          <div>
-            <h1 className='text-2xl font-black tracking-tight text-white'>EduMine</h1>
-            <p className='text-xs font-medium text-cyan-400/80 uppercase tracking-widest'>Early Warning System</p>
-          </div>
+          <button onClick={() => setShowLanding(true)} className='text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-2'>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+            Back to Home
+          </button>
         </div>
       </header>
 
