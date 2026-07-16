@@ -12,9 +12,10 @@ def extract_features(info, vle, assessments, assdtl, cutoff_week=None):
         If None, use all available data
     Returns: feature DataFrame indexed by (id_student, code_module, code_presentation)
     """
+    # Use copy to avoid SettingWithCopyWarning
     vle_cut = vle.copy()
     if cutoff_week is not None:
-        vle_cut = vle_cut[vle_cut['date'] <= cutoff_week * 7]
+        vle_cut = vle_cut[vle_cut['date'] <= cutoff_week * 7].copy()
         
     features = {}
     
@@ -41,9 +42,14 @@ def extract_features(info, vle, assessments, assdtl, cutoff_week=None):
     reg['click_std'] = reg['click_std'].fillna(0)
 
     # ─── Feature group 4: Assessment behavior ────────────────────────
-    merged_assess = assessments.merge(assdtl[['id_assessment','date']], on='id_assessment')
+    merged_assess = assessments.merge(assdtl, on='id_assessment', how='left')
+    
     if cutoff_week is not None:
-        merged_assess = merged_assess[merged_assess['date'] <= cutoff_week * 7]
+        # Handle cases where date might be NaN
+        merged_assess = merged_assess[
+            merged_assess['date'].notna() & 
+            (merged_assess['date'] <= cutoff_week * 7)
+        ].copy()
         
     asmfeat = merged_assess.groupby(['id_student','code_module','code_presentation']).agg(
         num_submissions = ('id_assessment','count'),
