@@ -33,11 +33,11 @@ def train_model(csv_path, model_name):
         model = xgb.XGBClassifier(
             n_estimators=400, max_depth=6, learning_rate=0.05,
             subsample=0.8, colsample_bytree=0.8,
-            scale_pos_weight=scale, use_label_encoder=False,
-            eval_metric='logloss', random_state=42
+            scale_pos_weight=scale,
+            eval_metric='logloss', random_state=42,
+            early_stopping_rounds=30
         )
-        model.fit(X_tr, y_tr, eval_set=[(X_val, y_val)],
-                  early_stopping_rounds=30, verbose=False)
+        model.fit(X_tr, y_tr, eval_set=[(X_val, y_val)], verbose=False)
 
         preds = model.predict(X_val)
         probs = model.predict_proba(X_val)[:,1]
@@ -55,7 +55,7 @@ def train_model(csv_path, model_name):
     final_model = xgb.XGBClassifier(
         n_estimators=400, max_depth=6, learning_rate=0.05,
         subsample=0.8, colsample_bytree=0.8,
-        scale_pos_weight=scale, use_label_encoder=False,
+        scale_pos_weight=scale,
         eval_metric='logloss', random_state=42
     )
     final_model.fit(X, y)
